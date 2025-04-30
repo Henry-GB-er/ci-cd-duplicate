@@ -1,5 +1,4 @@
 name: CI/CD Pipeline
-
 on:
   push:
     branches:
@@ -7,7 +6,6 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,3 +25,7 @@ jobs:
 
       - name: Run Tests
         run: pytest tests/ -v
+
+      - name: Process and save dataset  # 👈 NEW STEP!
+        run: |
+          python -c "from src.main import load_and_process_data; load_and_process_data('data/dataset.csv', 'data/processed_dataset.csv')"
