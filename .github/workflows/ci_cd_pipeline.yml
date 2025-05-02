@@ -29,6 +29,12 @@ jobs:
       - name: Run Tests
         run: pytest tests/ -v
 
+      # Step to check if the processed dataset exists
+      - name: Check if processed dataset exists
+        run: |
+          ls -l data/  # This will list the files in the `data/` folder to confirm if `processed_dataset.csv` is created
+
+      # Optional: If processed dataset exists, commit and push it
       - name: Commit and push processed dataset
         run: |
           git config --global user.name "github-actions"
